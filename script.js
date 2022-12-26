@@ -39,10 +39,11 @@ class Calculator {
     compute() {
       let answer;
       const previous = parseFloat(this.previousOperation);
-      const current = parseFloat(this.currentOperation);
+      let current = parseFloat(this.currentOperation);
       if (isNaN(previous) || isNaN(current)) {
         return;
       }
+  
       switch (this.operation) {
         case "+":
           answer = previous + current;
@@ -59,7 +60,19 @@ class Calculator {
         default:
           return;
       }
+  
       this.currentOperation = answer;
+      this.operation = undefined;
+      this.previousOperation = "";
+    }
+    switch() {
+      if (this.currentOperation === "") {
+        return;
+      }
+  
+      let switchCurrent = parseFloat(this.currentOperation);
+      switchCurrent = switchCurrent * -1;
+      this.currentOperation = switchCurrent;
       this.operation = undefined;
       this.previousOperation = "";
     }
@@ -76,7 +89,7 @@ class Calculator {
   const operationButtons = document.querySelectorAll("[data-operation]");
   const equalsButton = document.querySelector("[data-equals]");
   const clearButton = document.querySelector("[data-all-clear]");
-  
+  const switchButton = document.querySelector("[data-operation-switch");
   const previousOperationTextElement = document.querySelector(
     "[data-previous-operation]"
   );
@@ -110,6 +123,11 @@ class Calculator {
   
   clearButton.addEventListener("click", (button) => {
     calculator.clear();
+    calculator.updateDisplay();
+  });
+  
+  switchButton.addEventListener("click", (button) => {
+    calculator.switch();
     calculator.updateDisplay();
   });
   
