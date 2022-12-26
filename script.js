@@ -55,6 +55,11 @@ class Calculator {
           answer = previous * current;
           break;
         case "/":
+          // handles divison by zero
+          if (current === 0) {
+            answer = 0;
+            break;
+          }
           answer = previous / current;
           break;
         default:
