@@ -78,10 +78,41 @@ class Calculator {
       this.previousOperation = "";
     }
   
+    // Helper function to add commas to numbers and allow
+    // numbers to be entered for decimal numbers
+    getDisplayNumber(number) {
+      const stringNumber = number.toString();
+      const integerDigits = parseFloat(stringNumber.split(".")[0]);
+      const decimalDigits = stringNumber.split(".")[1];
+  
+      let integerDisplay;
+  
+      if (isNaN(integerDigits)) {
+        integerDisplay = "";
+      } else {
+        integerDisplay = integerDigits.toLocaleString("en", {
+          maximumFractionDigits: 0
+        });
+      }
+  
+      if (decimalDigits != null) {
+        return `${integerDisplay}.${decimalDigits}`;
+      } else {
+        return integerDisplay;
+      }
+    }
     // updating the display
     updateDisplay() {
-      this.currentOperationTextElement.innerText = this.currentOperation;
-      this.previousOperationTextElement.innerText = this.previousOperation;
+      this.currentOperationTextElement.innerText = this.getDisplayNumber(
+        this.currentOperation
+      );
+      if (this.operation != null) {
+        this.previousOperationTextElement.innerText = `${this.getDisplayNumber(
+          this.previousOperation
+        )} ${this.operation}`;
+      } else {
+        this.previousOperationTextElement.innerText = "";
+      }
     }
   }
   
