@@ -39,7 +39,7 @@ class Calculator {
     compute() {
       let answer;
       const previous = parseFloat(this.previousOperation);
-      let current = parseFloat(this.currentOperation);
+      const current = parseFloat(this.currentOperation);
       if (isNaN(previous) || isNaN(current)) {
         return;
       }
@@ -65,6 +65,7 @@ class Calculator {
       this.operation = undefined;
       this.previousOperation = "";
     }
+  
     switch() {
       if (this.currentOperation === "") {
         return;
