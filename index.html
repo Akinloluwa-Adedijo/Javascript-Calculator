@@ -23,10 +23,11 @@
     <h1>Javascript Calculator</h1>
     <div class="calculator-grid">
       <div class="output">
-        <div class="previous-operation">907 +</div>
-        <div class="current-operation">203</div>
+        <div data-previous-operation class="previous-operation"></div>
+        <div data-current-operation class="current-operation"></div>
       </div>
 
+      <!-- Using data attributes to not mix CSS classes and selectors for JS -->
       <button data-all-clear class="span-two">C</button>
       <button data-operation>+/-</button>
       <button data-operation>/</button>
@@ -43,7 +44,7 @@
       <button data-numbers>3</button>
       <button data-operation>+</button>
       <button data-numbers>0</button>
-      <button data-number>.</button>
+      <button data-numbers>.</button>
       <button data-equals class="span-two">=</button>
     </div>
   </body>
